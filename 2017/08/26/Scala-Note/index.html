@@ -95,17 +95,17 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="Scala隐式转换所谓隐式转换函数（implicit conversion function）指的是那种以implicit关键字声明的带有单个参数的函数。这样的函数将被Scala自动调用，将值从一种类型转换成另一个类型，比如 整数 + 浮点数，编译器自动将整数转换成浮点数进行计算。 比如，我们想把整数n转换成分数n/1。 123implicit def int2Fraction(n: Int) =">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2017/08/24/hello-world/index.html">
+<meta property="og:title" content="Scala-Note">
+<meta property="og:url" content="http://yoursite.com/2017/08/26/Scala-Note/index.html">
 <meta property="og:site_name" content="Xuzq&#39;s Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="Scala隐式转换所谓隐式转换函数（implicit conversion function）指的是那种以implicit关键字声明的带有单个参数的函数。这样的函数将被Scala自动调用，将值从一种类型转换成另一个类型，比如 整数 + 浮点数，编译器自动将整数转换成浮点数进行计算。 比如，我们想把整数n转换成分数n/1。 123implicit def int2Fraction(n: Int) =">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-24T13:50:14.000Z">
+<meta property="og:updated_time" content="2017-08-26T08:11:33.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="Scala-Note">
+<meta name="twitter:description" content="Scala隐式转换所谓隐式转换函数（implicit conversion function）指的是那种以implicit关键字声明的带有单个参数的函数。这样的函数将被Scala自动调用，将值从一种类型转换成另一个类型，比如 整数 + 浮点数，编译器自动将整数转换成浮点数进行计算。 比如，我们想把整数n转换成分数n/1。 123implicit def int2Fraction(n: Int) =">
 
 
 
@@ -135,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/08/24/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/26/Scala-Note/"/>
 
 
 
 
 
-  <title>Hello World | Xuzq's Blog</title>
+  <title>Scala-Note | Xuzq's Blog</title>
   
 
 
@@ -287,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/24/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/26/Scala-Note/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZanderXu">
@@ -304,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">Scala-Note</h1>
         
 
         <div class="post-meta">
@@ -316,8 +316,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-24T21:50:14+08:00">
-                2017-08-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-26T16:09:40+08:00">
+                2017-08-26
               </time>
             
 
@@ -326,6 +326,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Scala/" itemprop="url" rel="index">
+                    <span itemprop="name">Scala</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -354,16 +376,32 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
+        <h1 id="Scala隐式转换"><a href="#Scala隐式转换" class="headerlink" title="Scala隐式转换"></a>Scala隐式转换</h1><p>所谓隐式转换函数（implicit conversion function）指的是那种以implicit关键字声明的带有单个参数的函数。这样的函数将被Scala自动调用，将值从一种类型转换成<br>另一个类型，比如 整数 + 浮点数，编译器自动将整数转换成浮点数进行计算。</p>
+<p>比如，我们想把整数n转换成分数n/1。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">implicit</span> <span class="function"><span class="keyword">def</span> <span class="title">int2Fraction</span></span>(n: <span class="type">Int</span>) = <span class="type">Fraction</span>(n, <span class="number">1</span>)</div><div class="line"></div><div class="line"><span class="keyword">val</span> result = <span class="number">3</span> * <span class="type">Fraction</span>(<span class="number">4</span>, <span class="number">5</span>)</div></pre></td></tr></table></figure>
+<p>此时会触发隐式转换，将3 转换成Fraction(3)，然后与Fraction(4, 5)进行相乘，得到最终结果。由于隐式函数一般不手动调用，所以函数的名称可以起任何名字，但是<br>建议使用<em>source2Target</em>这种规则。</p>
+<h3 id="隐式转换触发条件"><a href="#隐式转换触发条件" class="headerlink" title="隐式转换触发条件"></a>隐式转换触发条件</h3><p>Scala编译器触发隐式转换有以下几种情况：</p>
+<ul>
+<li><strong>当表达式的类型与预期的类型不同时</strong>，比如 sqrt(Fraction(1, 4))将触发fraction2Double隐式转换，因为sqrt预期的参数是一个Double类型</li>
+<li><strong>当对象访问一个不存在的成员时</strong>，比如new File(“README”).read将触发file2RichFile隐式转换，因为File类中不存在read方法，需要将File隐式转换成RichFile类，然后再调用RichFile类中的read方法</li>
+<li><strong>当对象调用某一个方法时，而该方法的参数声明与传入的参数不匹配时</strong>，比如3 <em> Fraction(4, 5)，将调用int2Fraction，因为Int的</em>方法不接受Fraction类型参数，需要调用隐式转换</li>
+</ul>
+<p>但是有些时候，Scala编译器将不会尝试使用隐式转换，比如：</p>
+<ul>
+<li><strong>如果代码能够在不使用隐式转换的前提下通过编译</strong>，则不会使用隐士转换</li>
+<li><strong>编译器不会尝试同时执行多个隐式转换</strong>，比如convert1(convert2(a)) * b</li>
+<li><strong>存在二义性的转换是一个错误</strong></li>
+</ul>
+<h3 id="隐式转换的引用范围"><a href="#隐式转换的引用范围" class="headerlink" title="隐式转换的引用范围"></a>隐式转换的引用范围</h3><p>在选择Scala隐式转换方法时，如一下规则进行选择：</p>
+<ol>
+<li><strong>选用当前作用域下以单个标识符指代的隐式函数</strong>，比如上面的例子</li>
+<li><strong>位于源或者目标类型的伴生对象中的隐式函数</strong></li>
+</ol>
+<p>针对第二种情况，我们举一个简单的例子，比如：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">object</span> <span class="title">Dollar</span></span>&#123;</div><div class="line">  <span class="keyword">implicit</span> <span class="function"><span class="keyword">def</span> <span class="title">dollarToEuro</span></span>(x: <span class="type">Dollar</span>): <span class="type">Euro</span> = &#123;</div><div class="line">    .....</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dollar</span></span>&#123;</div><div class="line">  .....</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果在 class Dollar 的方法有需要 Euro 类型，但输入数据使用的是 Dollar，编译器会在其伙伴对象 object Dollar 查找所需的隐式类型转换，本例定义一个从 Dollar 到 Euro 的 implicit 定义可以使用。</p>
+<h3 id="隐式参数"><a href="#隐式参数" class="headerlink" title="隐式参数"></a>隐式参数</h3><p>函数或者方法可以带有一个标记为implicit的参数列表，这种情况下编译器将会查找<strong>缺省值</strong>，提供给该函数或方法，当然如果调用的时候提供了该参数，将不会触发隐式转换。比如：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">Delimiters</span>(<span class="params">left: <span class="type">String</span>, right: <span class="type">String</span></span>)</span></div><div class="line"><span class="class"></span></div><div class="line"><span class="class"><span class="title">def</span> <span class="title">quote</span>(<span class="params">what: <span class="type">String</span></span>)(<span class="params">implicit delims: <span class="type">Delimiters</span></span>) </span>= delims.left + what + delims.right</div><div class="line"></div><div class="line"><span class="comment">// 如下调用quto函数时，将不会触发隐式转换，因为提供了第二个参数，最终生成&lt;Bonjour le mode&gt;</span></div><div class="line">quto(<span class="string">"Bonjour le monde"</span>)(<span class="type">Delimiters</span>(<span class="string">"&lt;"</span>, <span class="string">"&gt;"</span>))</div><div class="line"></div><div class="line"><span class="comment">// 如下调用quto函数时，由于没提供第二个参数，Scala编译器将触发隐式转换函数，寻找一个类型为Delimiters的隐式值作为默认参数传递给quto函数。</span></div><div class="line">quto(<span class="string">"Bonjour le monde"</span>)</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -387,15 +425,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/08/24/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/26/Scala-Note/" rel="prev" title="Scala-Note">
-                Scala-Note <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -537,7 +575,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Scala隐式转换"><span class="nav-number">1.</span> <span class="nav-text">Scala隐式转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#隐式转换触发条件"><span class="nav-number">1.0.1.</span> <span class="nav-text">隐式转换触发条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隐式转换的引用范围"><span class="nav-number">1.0.2.</span> <span class="nav-text">隐式转换的引用范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隐式参数"><span class="nav-number">1.0.3.</span> <span class="nav-text">隐式参数</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
