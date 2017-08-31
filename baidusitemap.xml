@@ -3,26 +3,68 @@
 
 
     
-    
-    
-    
   <url>
-    <loc>http://yoursite.com/2017/08/27/HelloWorldTwo/</loc>
-    <lastmod>2017-08-27T12:00:12.000Z</lastmod>
+    <loc>http://yoursite.com/2017/08/30/LinuxSocket%E8%A7%A3%E6%9E%90/</loc>
+    <lastmod>2017-08-31T05:48:21.000Z</lastmod>
     <data>
         <display>
-        <title>HelloWorldTwo</title>
-        <pubTime>2017-08-27T11:59:25.000Z</pubTime>
+        <title>LinuxSocket解析</title>
+        <pubTime>2017-08-30T10:09:33.000Z</pubTime>
         
+        <tag>socket,tcp</tag>
+         
          
            
              
-              <breadCrumb title="随笔" url="http://yoursite.com/categories/%E9%9A%8F%E7%AC%94/"/>
+              <breadCrumb title="Socket" url="http://yoursite.com/categories/Socket/"/>
           
         </display>
     </data>
     </url>
 
+    
+  <url>
+    <loc>http://yoursite.com/2017/08/29/JavaNio%E8%AF%A6%E8%A7%A3/</loc>
+    <lastmod>2017-08-29T11:18:15.000Z</lastmod>
+    <data>
+        <display>
+        <title>JavaNio详解</title>
+        <pubTime>2017-08-29T11:15:57.000Z</pubTime>
+        
+        <tag>nio</tag>
+         
+         
+           
+             
+              <breadCrumb title="RPC" url="http://yoursite.com/categories/RPC/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/08/29/Tcp%E5%92%8CHttp%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
+    <lastmod>2017-08-29T11:17:29.000Z</lastmod>
+    <data>
+        <display>
+        <title>Tcp和Http的区别</title>
+        <pubTime>2017-08-29T11:15:37.000Z</pubTime>
+        
+        <tag>rpc,tcp,http</tag>
+         
+         
+           
+             
+              <breadCrumb title="RPC" url="http://yoursite.com/categories/RPC/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+    
     
   <url>
     <loc>http://yoursite.com/2017/08/26/Scala-Note/</loc>
@@ -37,21 +79,6 @@
              
               <breadCrumb title="Scala" url="http://yoursite.com/categories/Scala/"/>
           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/08/24/hello-world/</loc>
-    <lastmod>2017-08-24T13:50:14.000Z</lastmod>
-    <data>
-        <display>
-        <title>Hello World</title>
-        <pubTime>2017-08-24T13:50:14.000Z</pubTime>
-        
-         
-           
         </display>
     </data>
     </url>
