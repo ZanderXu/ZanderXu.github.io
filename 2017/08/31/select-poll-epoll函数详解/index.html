@@ -95,17 +95,17 @@
 
 
 
-<meta name="description" content="Scala隐式转换所谓隐式转换函数（implicit conversion function）指的是那种以implicit关键字声明的带有单个参数的函数。这样的函数将被Scala自动调用，将值从一种类型转换成另一个类型，比如 整数 + 浮点数，编译器自动将整数转换成浮点数进行计算。 比如，我们想把整数n转换成分数n/1。 123implicit def int2Fraction(n: Int) =">
+<meta name="description" content="在学习Linux Socket后，我们总是从最简单的Server程序写起，比如： socket() -&amp;gt; bind() -&amp;gt; listen() -&amp;gt; accept() -&amp;gt; read()/write() -&amp;gt; close() 接下来，我们需要学习一下服务器如何处理客户端的并发请求。本文主要介绍IO多路复用模型中select、poll和epoll，通过底层实现进一步说明">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Scala-Note">
-<meta property="og:url" content="http://yoursite.com/2017/08/26/Scala-Note/index.html">
+<meta property="og:title" content="select_poll_epoll函数详解">
+<meta property="og:url" content="http://yoursite.com/2017/08/31/select-poll-epoll函数详解/index.html">
 <meta property="og:site_name" content="Xuzq&#39;s Blog">
-<meta property="og:description" content="Scala隐式转换所谓隐式转换函数（implicit conversion function）指的是那种以implicit关键字声明的带有单个参数的函数。这样的函数将被Scala自动调用，将值从一种类型转换成另一个类型，比如 整数 + 浮点数，编译器自动将整数转换成浮点数进行计算。 比如，我们想把整数n转换成分数n/1。 123implicit def int2Fraction(n: Int) =">
+<meta property="og:description" content="在学习Linux Socket后，我们总是从最简单的Server程序写起，比如： socket() -&amp;gt; bind() -&amp;gt; listen() -&amp;gt; accept() -&amp;gt; read()/write() -&amp;gt; close() 接下来，我们需要学习一下服务器如何处理客户端的并发请求。本文主要介绍IO多路复用模型中select、poll和epoll，通过底层实现进一步说明">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-26T08:11:33.000Z">
+<meta property="og:updated_time" content="2017-08-31T14:11:41.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Scala-Note">
-<meta name="twitter:description" content="Scala隐式转换所谓隐式转换函数（implicit conversion function）指的是那种以implicit关键字声明的带有单个参数的函数。这样的函数将被Scala自动调用，将值从一种类型转换成另一个类型，比如 整数 + 浮点数，编译器自动将整数转换成浮点数进行计算。 比如，我们想把整数n转换成分数n/1。 123implicit def int2Fraction(n: Int) =">
+<meta name="twitter:title" content="select_poll_epoll函数详解">
+<meta name="twitter:description" content="在学习Linux Socket后，我们总是从最简单的Server程序写起，比如： socket() -&amp;gt; bind() -&amp;gt; listen() -&amp;gt; accept() -&amp;gt; read()/write() -&amp;gt; close() 接下来，我们需要学习一下服务器如何处理客户端的并发请求。本文主要介绍IO多路复用模型中select、poll和epoll，通过底层实现进一步说明">
 
 
 
@@ -135,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/08/26/Scala-Note/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/31/select-poll-epoll函数详解/"/>
 
 
 
 
 
-  <title>Scala-Note | Xuzq's Blog</title>
+  <title>select_poll_epoll函数详解 | Xuzq's Blog</title>
   
 
 
@@ -287,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/26/Scala-Note/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/31/select-poll-epoll函数详解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZanderXu">
@@ -304,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Scala-Note</h1>
+          <h1 class="post-title" itemprop="name headline">select_poll_epoll函数详解</h1>
         
 
         <div class="post-meta">
@@ -316,8 +316,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-26T16:09:40+08:00">
-                2017-08-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-31T20:43:49+08:00">
+                2017-08-31
               </time>
             
 
@@ -332,8 +332,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-08-26T16:11:33+08:00">
-                2017-08-26
+              <time title="更新于" itemprop="dateModified" datetime="2017-08-31T22:11:41+08:00">
+                2017-08-31
               </time>
             
           </span>
@@ -351,8 +351,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Scala/" itemprop="url" rel="index">
-                    <span itemprop="name">Scala</span>
+                  <a href="/categories/RPC/" itemprop="url" rel="index">
+                    <span itemprop="name">RPC</span>
                   </a>
                 </span>
 
@@ -368,7 +368,7 @@
 
           
           
-             <span id="/2017/08/26/Scala-Note/" class="leancloud_visitors" data-flag-title="Scala-Note">
+             <span id="/2017/08/31/select-poll-epoll函数详解/" class="leancloud_visitors" data-flag-title="select_poll_epoll函数详解">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -399,32 +399,89 @@
       
 
       
-        <h1 id="Scala隐式转换"><a href="#Scala隐式转换" class="headerlink" title="Scala隐式转换"></a>Scala隐式转换</h1><p>所谓隐式转换函数（implicit conversion function）指的是那种以implicit关键字声明的带有单个参数的函数。这样的函数将被Scala自动调用，将值从一种类型转换成<br>另一个类型，比如 整数 + 浮点数，编译器自动将整数转换成浮点数进行计算。</p>
-<p>比如，我们想把整数n转换成分数n/1。</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">implicit</span> <span class="function"><span class="keyword">def</span> <span class="title">int2Fraction</span></span>(n: <span class="type">Int</span>) = <span class="type">Fraction</span>(n, <span class="number">1</span>)</div><div class="line"></div><div class="line"><span class="keyword">val</span> result = <span class="number">3</span> * <span class="type">Fraction</span>(<span class="number">4</span>, <span class="number">5</span>)</div></pre></td></tr></table></figure>
-<p>此时会触发隐式转换，将3 转换成Fraction(3)，然后与Fraction(4, 5)进行相乘，得到最终结果。由于隐式函数一般不手动调用，所以函数的名称可以起任何名字，但是<br>建议使用<em>source2Target</em>这种规则。</p>
-<h3 id="隐式转换触发条件"><a href="#隐式转换触发条件" class="headerlink" title="隐式转换触发条件"></a>隐式转换触发条件</h3><p>Scala编译器触发隐式转换有以下几种情况：</p>
+        <p>在学习Linux Socket后，我们总是从最简单的Server程序写起，比如：</p>
+<p>socket() -&gt; bind() -&gt; listen() -&gt; accept() -&gt; read()/write() -&gt; close()</p>
+<p>接下来，我们需要学习一下服务器如何处理客户端的并发请求。本文主要介绍IO多路复用模型中select、poll和epoll，通过底层实现进一步说明各自的有确定。</p>
+<h2 id="select机制"><a href="#select机制" class="headerlink" title="select机制"></a>select机制</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">select</span><span class="params">(<span class="keyword">int</span> maxfdp, fd_set * readfds, fd_set * writefds, fd_set * errorfds, struct timeval * timeout)</span></span>;</div></pre></td></tr></table></figure>
+<p>select机制中提供一个fd_set的结构体，实际上是一个long类型的数组，每一个数组元素都能与一打开的文件句柄(不管是socket句柄，还是其他文件或命名管道或设备句柄)建立联系，建立联系的工作由程序员完成，当调用select()时，由内核根据IO状态修改fe_set的内容，由此来通知执行了select()的进程哪一socket或文件可读。参数解析：</p>
 <ul>
-<li><strong>当表达式的类型与预期的类型不同时</strong>，比如 sqrt(Fraction(1, 4))将触发fraction2Double隐式转换，因为sqrt预期的参数是一个Double类型</li>
-<li><strong>当对象访问一个不存在的成员时</strong>，比如new File(“README”).read将触发file2RichFile隐式转换，因为File类中不存在read方法，需要将File隐式转换成RichFile类，然后再调用RichFile类中的read方法</li>
-<li><strong>当对象调用某一个方法时，而该方法的参数声明与传入的参数不匹配时</strong>，比如3 <em> Fraction(4, 5)，将调用int2Fraction，因为Int的</em>方法不接受Fraction类型参数，需要调用隐式转换</li>
+<li>maxfdp：一个整数值，是指集合中所有文件描述符的范围，即所有文件描述符的最大值加1</li>
+<li>readfds：fd_set结构的指针，这个集合中包括我们要监视读变化文件的文件描述符，即我们对这些文件的读事件感兴趣</li>
+<li>writefds：fd_set结构的指针，这个集合中包括我们要监视写变化文件的文件描述符，即我们对这些文件的写事件感兴趣</li>
+<li>errorfds：同上面两个参数的意图，用来监视文件错误异常</li>
+<li>timeout：select的超时时间</li>
 </ul>
-<p>但是有些时候，Scala编译器将不会尝试使用隐式转换，比如：</p>
+<h3 id="fd-set"><a href="#fd-set" class="headerlink" title="fd_set"></a>fd_set</h3><p>struct_set可以理解为一个集合，这个集合保存的是文件描述符(file describe)，即文件句柄，Unix下任何设备、管道、FIFO等都是文件形式，所有一个socket就是一个文件，可以通过几个宏对该集合进行操作。过去，一个fd_set通常只能包含小于32的fd(文件描述字)，因为fd_set其实只用了一个32位矢量来表示fd; 现在，UNIX系统通常会在头文件<sys select.h="">中定义常量FD_SETSIZE，它是数据类型fd_set的描述字数量，其值通常是1024，这样就能表示小于1024的fd。根据fd_set的位矢量实现，我们可以重新理解操作fd_set的四个宏，分别是：</sys></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">FD_SET</span><span class="params">(<span class="keyword">int</span> fd, fd_set * <span class="built_in">set</span>)</span></span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">FD_ZERO</span><span class="params">(fd_set * <span class="built_in">set</span>)</span></span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">FD_CLR</span><span class="params">(<span class="keyword">int</span> fd, fd_set * <span class="built_in">set</span>)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">FD_ISSET</span><span class="params">(<span class="keyword">int</span> fd, fd_set * <span class="built_in">set</span>)</span></span>;</div></pre></td></tr></table></figure>
 <ul>
-<li><strong>如果代码能够在不使用隐式转换的前提下通过编译</strong>，则不会使用隐士转换</li>
-<li><strong>编译器不会尝试同时执行多个隐式转换</strong>，比如convert1(convert2(a)) * b</li>
-<li><strong>存在二义性的转换是一个错误</strong></li>
+<li>FD_SET：将fd加入到set集合中</li>
+<li>FD_ZERO：将set集合清空，使其不包含任何元素</li>
+<li>FD_CLR：将fd从set集合中清除</li>
+<li>FD_ISSET：测试fd是否在集合中</li>
 </ul>
-<h3 id="隐式转换的引用范围"><a href="#隐式转换的引用范围" class="headerlink" title="隐式转换的引用范围"></a>隐式转换的引用范围</h3><p>在选择Scala隐式转换方法时，如一下规则进行选择：</p>
-<ol>
-<li><strong>选用当前作用域下以单个标识符指代的隐式函数</strong>，比如上面的例子</li>
-<li><strong>位于源或者目标类型的伴生对象中的隐式函数</strong></li>
-</ol>
-<p>针对第二种情况，我们举一个简单的例子，比如：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">object</span> <span class="title">Dollar</span></span>&#123;</div><div class="line">  <span class="keyword">implicit</span> <span class="function"><span class="keyword">def</span> <span class="title">dollarToEuro</span></span>(x: <span class="type">Dollar</span>): <span class="type">Euro</span> = &#123;</div><div class="line">    .....</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dollar</span></span>&#123;</div><div class="line">  .....</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>如果在 class Dollar 的方法有需要 Euro 类型，但输入数据使用的是 Dollar，编译器会在其伙伴对象 object Dollar 查找所需的隐式类型转换，本例定义一个从 Dollar 到 Euro 的 implicit 定义可以使用。</p>
-<h3 id="隐式参数"><a href="#隐式参数" class="headerlink" title="隐式参数"></a>隐式参数</h3><p>函数或者方法可以带有一个标记为implicit的参数列表，这种情况下编译器将会查找<strong>缺省值</strong>，提供给该函数或方法，当然如果调用的时候提供了该参数，将不会触发隐式转换。比如：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">Delimiters</span>(<span class="params">left: <span class="type">String</span>, right: <span class="type">String</span></span>)</span></div><div class="line"><span class="class"></span></div><div class="line"><span class="class"><span class="title">def</span> <span class="title">quote</span>(<span class="params">what: <span class="type">String</span></span>)(<span class="params">implicit delims: <span class="type">Delimiters</span></span>) </span>= delims.left + what + delims.right</div><div class="line"></div><div class="line"><span class="comment">// 如下调用quto函数时，将不会触发隐式转换，因为提供了第二个参数，最终生成&lt;Bonjour le mode&gt;</span></div><div class="line">quto(<span class="string">"Bonjour le monde"</span>)(<span class="type">Delimiters</span>(<span class="string">"&lt;"</span>, <span class="string">"&gt;"</span>))</div><div class="line"></div><div class="line"><span class="comment">// 如下调用quto函数时，由于没提供第二个参数，Scala编译器将触发隐式转换函数，寻找一个类型为Delimiters的隐式值作为默认参数传递给quto函数。</span></div><div class="line">quto(<span class="string">"Bonjour le monde"</span>)</div></pre></td></tr></table></figure>
+<h3 id="Timeout"><a href="#Timeout" class="headerlink" title="Timeout"></a>Timeout</h3><p>Timeout有三种可能：</p>
+<p>1）timeout = NULL (阻塞：直到有一个fd位被置为1函数才返回)</p>
+<p>2）timeout所指向的结构设为非零时间(等待固定时间：有一个fd位被置为1或者时间耗尽，函数均返回)</p>
+<p>3）timeout所指向的结构，时间设为0(非阻塞：函数检查完每一个fd后立即返回)</p>
+<h3 id="Select使用流程"><a href="#Select使用流程" class="headerlink" title="Select使用流程"></a>Select使用流程</h3><ul>
+<li>创建各自的fd_set，比如可读的fd_set和可写的fd_set</li>
+<li>调用FD_ZERO()将fd_set进行清空</li>
+<li>调用FD_SET()将文件描述加入到特定的fd_set中</li>
+<li>当用户程序调用select()函数时，首先将fd_set从用户空间拷贝到内核空间中，系统内核依次遍历fd_set中的所有文件描述，判断这些文件描述的特定事件是否被触发。此时系统内核将没有触发的文件描述从fd_set中清除，然后再将fd_set拷贝到用户空间，供程序使用。</li>
+<li>用户程序依次遍历返回来的fd_set，使用FD_ISSET进行判断，然后进行相应的操作</li>
+</ul>
+<h2 id="poll机制"><a href="#poll机制" class="headerlink" title="poll机制"></a>poll机制</h2><p>poll的实现和select非常相似，只是描述fd集合的方式不同，poll使用pollfd结构而不是select的fd_set结构，其他的都差不多，在此不做详细介绍。</p>
+<h2 id="epoll机制"><a href="#epoll机制" class="headerlink" title="epoll机制"></a>epoll机制</h2><h3 id="epoll相关操作"><a href="#epoll相关操作" class="headerlink" title="epoll相关操作"></a>epoll相关操作</h3><p>epoll是为了处理大批量句柄而做的select和poll的升级版。有三个相应的系统调用。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">epoll_create</span><span class="params">(<span class="keyword">int</span> size)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">epoll_ctl</span><span class="params">(<span class="keyword">int</span> epfd, <span class="keyword">int</span> op, <span class="keyword">int</span> fd, struct epoll_event *event)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">epoll_wait</span><span class="params">(<span class="keyword">int</span> epfd, struct epoll_event * events, <span class="keyword">int</span> maxevents, <span class="keyword">int</span> timeout)</span></span>;</div></pre></td></tr></table></figure>
+<ul>
+<li>epoll_create：创建一个epoll句柄。当创建一个epoll句柄后，它就会占用一个fd值，在linux下可以使/proc/进程id/fd/ 查看，所以在使用完epoll后，必须调用close()关闭，否则可能导致fd被耗尽。</li>
+<li>epoll_ctl：事件注册函数，将特定文件描述和对应的监听事件注册到epoll对象中<ul>
+<li>epfd：用epoll_create()创建的epoll对象</li>
+<li>op：操作类型<ul>
+<li>EPOLL_CTL_ADD：注册新的fd到epfd中；</li>
+<li>EPOLL_CTL_MOD：修改已经注册的fd的监听事件；</li>
+<li>EPOLL_CTL_DEL：从epfd中删除一个fd；</li>
+</ul>
+</li>
+<li>fd：需要监听的fd</li>
+<li>event：告诉内核需要监听的什么事件，其中event可以是以下几个宏的集合<ul>
+<li>EPOLLIN ：表示对应的文件描述符可以读（包括对端SOCKET正常关闭）；</li>
+<li>EPOLLOUT：表示对应的文件描述符可以写；</li>
+<li>EPOLLPRI：表示对应的文件描述符有紧急的数据可读（这里应该表示有带外数据到来）；</li>
+<li>EPOLLERR：表示对应的文件描述符发生错误；</li>
+<li>EPOLLHUP：表示对应的文件描述符被挂断；</li>
+<li>EPOLLET： 将EPOLL设为边缘触发(Edge Triggered)模式，这是相对于水平触发(Level Triggered)来说的。</li>
+<li>EPOLLONESHOT：只监听一次事件，当监听完这次事件之后，如果还需要继续监听这个socket的话，需要再次把这个socket加入到EPOLL队列里</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>epoll_wait：收集在epoll监控的事件中已经发送的事件<ul>
+<li>epfd：用epoll_create()创建的epoll对象</li>
+<li>events：分配好的epoll_event结构体数组，epoll把发生的事件赋值到events数组中</li>
+<li>maxevents：告之内核这个events有多大</li>
+<li>timeout：超时时间</li>
+</ul>
+</li>
+</ul>
+<h3 id="epoll实现原理"><a href="#epoll实现原理" class="headerlink" title="epoll实现原理"></a>epoll实现原理</h3><p>大家都明白epoll是一种IO多路复用技术，可以非常高效的处理数以百万计的socket句柄，比select和poll效率高很多。我们用起epoll来都感觉挺爽，确实快，那么，它到底为什么可以高速处理这么多并发连接呢？</p>
+<p>使用流程如下：</p>
+<ul>
+<li>调用epoll_create建立一个epoll对象。</li>
+<li>epoll_ctl对epoll对象进行相关操作，例如，将刚建立的socket加入到epoll中让其监控，或者把 epoll正在监控的某个socket句柄移出epoll，不再监控它等等。</li>
+<li>epoll_wait在调用时，在给定的timeout时间内，当在监控的所有句柄中有事件发生时，就返回用户态的进程。</li>
+</ul>
+<p>实际上在你调用epoll_create后，内核就已经在内核态开始准备帮你存储要监控的句柄了，每次调用epoll_ctl只是在往内核的<a href="http://lib.csdn.net/base/datastructure" target="_blank" rel="external">数据结构</a>里塞入新的socket句柄，此处使用传说中的mmap实现的。</p>
+<p>epoll还维护了一个双链表，用于存储已经发生的事件。当epoll_wait调用时，仅仅观察这个list链表里有没有数据即eptime项即可。有数据就返回，没有数据就sleep，等到timeout时间到后即使链表没数据也返回。</p>
+<p>那么，这个准备就绪list链表是怎么维护的呢？当我们执行epoll_ctl时，除了把socket放到epoll文件系统里file对象对应的红黑树上之外，还会给内核中断处理程序注册一个回调函数，告诉内核，如果这个句柄的中断到了，就把它放到准备就绪list链表里。所以，当一个socket上有数据到了，内核在把网卡上的数据copy到内核中后就来把socket插入到准备就绪链表里了。</p>
+<p>如此，一颗红黑树，一张准备就绪句柄链表，少量的内核cache，就帮我们解决了大并发下的socket处理问题。执行epoll_create时，创建了红黑树和就绪链表，执行epoll_ctl时，如果增加socket句柄，则检查在红黑树中是否存在，存在立即返回，不存在则添加到树干上，然后向内核注册回调函数，用于当中断事件来临时向准备就绪链表中插入数据。执行epoll_wait时立刻返回准备就绪链表里的数据即可。</p>
+<h2 id="epoll的优点"><a href="#epoll的优点" class="headerlink" title="epoll的优点"></a>epoll的优点</h2><ul>
+<li>支持一个进程打开大数目的socket描述（sfd）</li>
+<li>IO效率并不会随着sfd数目的增加而线性下降</li>
+<li>使用mmap加速内核和用户空间的消息传递</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://blog.csdn.net/xiajun07061225/article/details/9250579" target="_blank" rel="external">epoll详解</a></p>
+
       
     </div>
     
@@ -454,15 +511,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/08/30/LinuxSocket解析/" rel="next" title="LinuxSocket解析">
+                <i class="fa fa-chevron-left"></i> LinuxSocket解析
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/29/Tcp和Http的区别/" rel="prev" title="Tcp和Http的区别">
-                Tcp和Http的区别 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -613,7 +670,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Scala隐式转换"><span class="nav-number">1.</span> <span class="nav-text">Scala隐式转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#隐式转换触发条件"><span class="nav-number">1.0.1.</span> <span class="nav-text">隐式转换触发条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隐式转换的引用范围"><span class="nav-number">1.0.2.</span> <span class="nav-text">隐式转换的引用范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隐式参数"><span class="nav-number">1.0.3.</span> <span class="nav-text">隐式参数</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#select机制"><span class="nav-number">1.</span> <span class="nav-text">select机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fd-set"><span class="nav-number">1.1.</span> <span class="nav-text">fd_set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Timeout"><span class="nav-number">1.2.</span> <span class="nav-text">Timeout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Select使用流程"><span class="nav-number">1.3.</span> <span class="nav-text">Select使用流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#poll机制"><span class="nav-number">2.</span> <span class="nav-text">poll机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#epoll机制"><span class="nav-number">3.</span> <span class="nav-text">epoll机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#epoll相关操作"><span class="nav-number">3.1.</span> <span class="nav-text">epoll相关操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#epoll实现原理"><span class="nav-number">3.2.</span> <span class="nav-text">epoll实现原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#epoll的优点"><span class="nav-number">4.</span> <span class="nav-text">epoll的优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
